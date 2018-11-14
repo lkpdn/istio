@@ -130,8 +130,8 @@ GO_FILES_CMD := find . -name '*.go' | grep -v -E '$(GO_EXCLUDE)'
 
 export ISTIO_BIN=$(GO_TOP)/bin
 # Using same package structure as pkg/
-export OUT_DIR=$(GO_TOP)/out
-export ISTIO_OUT:=$(GO_TOP)/out/$(GOOS)_$(GOARCH)/$(BUILDTYPE_DIR)
+export OUT_DIR=$(shell git rev-parse --show-toplevel)/_out
+export ISTIO_OUT:=$(OUT_DIR)/$(GOOS)_$(GOARCH)/$(BUILDTYPE_DIR)
 export HELM=$(ISTIO_OUT)/helm
 
 # istioctl kube-inject uses builtin config only if this env var is set.
